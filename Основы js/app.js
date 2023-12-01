@@ -1,12 +1,18 @@
-/* Методом prompt получите ответ пользователя на вопрос "Сколько будет 7 + или - 15?".Если ответ верен, выведите в консоли "Успех", если нет - "Вы робот!", а если он введёт "Я не робот", то тоже "Успех".*/
+/*Пользователь хочет приобрести игру в магазине. Он может это сделать только если:
 
-let q = prompt("Сколько будет 7 + или - 15?");
-switch (q) {
-	case '22':
-	case '-8':
-	case 'Я не робот':
-		console.log('Успех!')
-		break
-	default:
-		console.log('Вы робот!')
-}
+    Eго баланс больше 1000 (balance) или число бонусов больше 100 (bonusBalance)
+    Он не забанен (isBanned)
+    Игра не куплена (isExist)
+    Игра в продаже (isSelling)
+
+Напишите условие для покупки и выведите в консоль результат.*/
+
+let balance = 0;
+let bonusBalance = 0;
+let isBanned = false;
+let isExist = true;
+let isSelling = true;
+let canBuy = (balance > 1000 || bonusBalance > 100) && !isBanned && isExist && isSelling;
+
+console.log('Возможность покупки:', canBuy);
+console.log(true && 'd' || '');
