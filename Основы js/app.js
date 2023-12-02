@@ -1,18 +1,27 @@
-/*Пользователь хочет приобрести игру в магазине. Он может это сделать только если:
+/* Задание для упражнения:
+Пользователь:
 
-    Eго баланс больше 1000 (balance) или число бонусов больше 100 (bonusBalance)
-    Он не забанен (isBanned)
-    Игра не куплена (isExist)
-    Игра в продаже (isSelling)
+    Возраст
+    Наличие работы
+    Деньги
 
-Напишите условие для покупки и выведите в консоль результат.*/
+Нужно проверить может ли он купить новый MacBook за 2000$? Он может брать не только свои деньги, но и взять кредит. Ему дадут 500$, только если ему больше 24-х лет и он имеет работу, 100$ если ему просто больше 24-х лет и 0 в ином случае. Напишите функцию, которая принимает данные пользователя и товара и возвращает true или false. */
 
-let balance = 0;
-let bonusBalance = 0;
-let isBanned = false;
-let isExist = true;
-let isSelling = true;
-let canBuy = (balance > 1000 || bonusBalance > 100) && !isBanned && isExist && isSelling;
 
-console.log('Возможность покупки:', canBuy);
-console.log(true && 'd' || '');
+function canBuy(age, job, money, cost) {
+    if (age > 24 && job) {
+        return money + 500 >= cost
+    } 
+    else if (age > 24) {
+        return money + 100 >= cost
+    };
+    return money >= cost;
+}
+
+let age = 25;
+let job = true;
+let money = 1900;
+const macBookPrice = 2000;
+
+
+console.log(canBuy(age, job, money, macBookPrice))
