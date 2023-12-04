@@ -1,86 +1,69 @@
-// Дан список задач
+// Задача вывести в консоль строку "Я люблю JS !" из массива, проходя циклом в обратном порядке и не используя reverse
 
-// const tasks = ['Задача 1'];
+const arr = ['!', 'JS', 'люблю', 'Я'];
+let newArr = []
 
-
-// Сделать функции:
-
-//     Добавление задачи в конец
-//     Удаление задачи по названию
-//     Перенос задачи в начало списка по названию
-
-// !Всегда меняем исходный массив
-
-function addTask(array, task) {
-    array.push(task)
-    return array
+for (let i = -1; i >= -(arr.length); i--){
+    newArr.push(arr.at(i))
 }
 
-function delTask(array, task) {
-    let index = array.indexOf(task)
-    index > -1 ? array.splice(index, 1) : array
-    return array
-}
+console.log(newArr.join(' '))
 
-function makeFirst(array, task) {
-    let index = array.indexOf(task)
-    if (index > -1) {
-        let task2
-        task2 = array.splice(index, 1)
-        array.unshift(task2[0])
-    }   
-    return array
-}
+console.log('-----------------')
+/*
+Есть выгрузка  операций пользователя
+const operations = [1000, -700, 300, -500, 10000];
+а так же  начальный баланс в 100$
+Необходимо сделать функции расчета:
+- Итогового баланса
+- Наличия отрицательного баланса (если после очередной операции баланс < 0, то выдавать false)
+- Расчета среднего расхода и среднего дохода
+*/
 
-const tasks = ['Задача 1']
+const operations = [1000, -700, 300, -500, 10000];
+let balance = 100;
 
-addTask(tasks, 'task1')
-addTask(tasks, 'task2')
-addTask(tasks, 'task3')
-console.log(tasks)
-console.log(delTask(tasks, 'task5'))
-console.log(makeFirst(tasks, 'task1'))
-
-
-// Дан произвольный url вида - https://purpleschool.ru/course/javascript
-// Нужно сделать функцию, которая выводит в консоль:
-
-// Протокол(https)
-//     Доменное имя(purpleschool.ru)
-//     Путь внутри сайта(/course/javascript)
-
-function getInfo(url) {
-    let urlList = url.split('/')    
-    // Протокол
-    switch (urlList[0]) {
-        case 'https:':
-            console.log('Протокол https')
-            break
-        case 'http:':
-            console.log('Протокол http')
-            break
-        default:
-            console.log('Ошибка в протоколе')        
+function balanceLeft(balance, operations) {
+    for (let element of operations) {
+        balance += element;        
     }
-    // Доменное имя
-    let dom = urlList[2].split('')
-    console.log(dom.includes('.') ? urlList[2] : 'Ошибка в доменном имени')   
-    // Путь внутри сайта
-    let path = urlList.slice(3)
-    console.log('/' + path.join('/'))
+    return balance
 }
 
-function getPath(url) {
-    let [protocol, _, host, ...path] = url.split('/')
-    if (protocol === 'https:' || protocol === 'http:') {
-        console.log(`Протокол ${protocol.slice(0, -1)}`)
-    } else { console.log('Ошибка в протоколе') }
-    console.log(host.split('').includes('.') ? host : 'Ошибка в доменном имени')
-    console.log('/' + path.join('/'))
+function checkNegative(balance, operations) {
+    for (let element of operations) {
+        balance += element;
+        if (balance < 0) {
+            return false
+        }
+    }
+    return true
 }
 
-const url = 'https://purpleschool.ru/course/javascript'
-const url2 = 'purpleschool.ru/course/javascript'
+function median(operations) {
+    let income = 0;
+    let incomeT = 0;
+    let outcome = 0;
+    let outcomeT = 0;
+    for (let element of operations) {    
+        switch (true) {
+            case element >= 0:
+                income += element;
+                incomeT++;
+                console.log('+', income);
+                break;
+            case element < 0:
+                outcome += element;
+                outcomeT++;   
+                console.log('-', outcome);
+                break;
+        }       
+    }    
+    return [income / incomeT, outcome / outcomeT]
+}
 
-getPath(url)
-getPath(url2)
+console.log(balanceLeft(balance, operations))
+console.log(checkNegative(balance, operations))
+let medianOp = median(operations)
+console.log(`Средний доход ${medianOp[0]}$`)
+console.log(`Средний расход ${-medianOp[1]}$`)
