@@ -13,10 +13,10 @@ function sortArray(array, direction = 'ascending') {
 	let temp2;
 	switch (direction) {
 		case 'ascending': //сортировка по возрастанию
-			for (let _ in array) { //количество проходов = длина массива
-				for (let i in array) {
+			for (let t = 0; t < array.length; t++) { //количество проходов = длина массива
+				for (let [i, el] of array.entries()) {
 					if (array[i] > array[Number(i) + 1]) { //сравниваем соседние элементы
-						temp1 = array[i];
+						temp1 = el;
 						temp2 = array[Number(i) + 1];
 						array[i] = temp2;
 						array[Number(i) + 1] = temp1;
@@ -25,10 +25,10 @@ function sortArray(array, direction = 'ascending') {
 			}
 			break;
 		case 'descending': //сортировка по убыванию
-			for (let _ in array) { //количество проходов = длина массива
-				for (let i in array) {
+			for (let t = 0; t < array.length; t++) { //количество проходов = длина массива
+				for (let [i, el] of array.entries()) {
 					if (array[i] < array[Number(i) + 1]) { //сравниваем соседние элементы
-						temp1 = array[i];
+						temp1 = el;
 						temp2 = array[Number(i) + 1];
 						array[i] = temp2;
 						array[Number(i) + 1] = temp1;
