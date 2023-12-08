@@ -1,73 +1,79 @@
+/* отсортировать по возрасту */
 
-const userName = 'Вася aka Terminator Perdinator Пупкин'
-const firstName = userName.slice(0, userName.indexOf(' '))
-const lastName = userName.slice(userName.lastIndexOf(' ') + 1, userName.length)
+const users = [
+	{ name: 'Вася', age: 30 },
+	{ name: 'Катя', age: 18 },
+	{ name: 'Аня', age: 40 },
+	{ name: 'Петя', age: 25 },
+];
 
-console.log(firstName, lastName)
+users.sort((a, b) => a.age - b.age)
 
+console.log(users)
+console.log('------------------')
 
-console.log('-----------------')
+//Преобразовать к виду {fullName: 'Вася Пупкин', skillNum: 2}
 
-// Задание: проверить является ли это номером телефона России
-// /* верные */
-// const num1 = '89103235356';
-// const num2 = '+79103235356';
-// const num3 = '+7(910)3235356';
-// const num4 = '+7(910) 323-53-56';
-// const num5 = ' +7(910) 323-53-56 ';
-// /* не верные */
-// const num1Error = '89103235';
-// const num2Error = '+7d910d323-53-56';
-// const num3Error = '9+7103235356';
-// const num4Error = '89103g35356';
+const users2 = [
+	{
+		name: 'Вася',
+		surname: 'Пупкин',
+		age: 30,
+		skills: ['Разработка', 'Dev0ps']
+	},
+	{
+		name: 'Катя',
+		surname: 'Белова',
+		age: 18,
+		skills: ['Дизайн']
+	},
+]
 
-function isNumber(phoneNumber) {
-	phoneNumber = String(phoneNumber)
-	console.log(phoneNumber)
-	phoneNumber = phoneNumber.trim()
-	if (!phoneNumber.startsWith('+7') && !phoneNumber.startsWith('8')) {
-		console.log('start')
-		return false
+usersNew = users2.map(element => {
+	return {
+		fullName: `${element.name} ${element.surname}`,
+		skillNum: element.skills.length
 	}
-	if (phoneNumber.lastIndexOf('+') > 0) {
-		console.log('+')
-		return false
-	}
-	if (phoneNumber.includes('(') && !phoneNumber.includes(')')
-		|| phoneNumber.includes(')') && !phoneNumber.includes('(')
-		|| phoneNumber.indexOf('(') > phoneNumber.indexOf(')')
-		|| phoneNumber.indexOf('(') !== phoneNumber.lastIndexOf('(')
-		|| phoneNumber.indexOf(')') !== phoneNumber.lastIndexOf(')')) {
-		console.log('()')
-		return false
-	}
-	for (let num of phoneNumber) {
-		if (isNaN(Number(num))
-			&& num !== '+'
-			&& num !== '-'
-			&& num !== '('
-			&& num !== ')'
-			&& num !== ' ') {
-			console.log(num)
+})
+
+console.log(usersNew)
+
+console.log('------------------')
+
+/* Реализовать методы увеличения и уменьшения баланса,
+	при котором каждая операция сохраняется в массив
+	operations в виде { reason: 'Оплата налогов', sum: -100 }.
+	Возвращается true, если успешно и false, если не зватает баланса.
+	Также реализовать метод вывода числа операций по кошельку
+*/
+
+const wallet = {
+	balance: 0,
+	operations: [],
+	income: function (reason, sum) {
+		this.operations.push({ reason, sum });
+		this.balance += sum;
+		return true;
+	},
+	outcome: function (reason, sum) {
+		if (this.balance < sum) {
+			console.log('Недостаточно средств')
 			return false
 		}
-	}
-	return true
-}
+		this.operations.push({ reason, sum });
+		this.balance -= sum;
+		return this.balance >= 0;
+	},
+	showOperations: function () {
+		console.log(this.operations.length)
+	},
+};
 
-console.log(isNumber('+7(910)323)5356'))
+wallet.income('Зарплата', 1000)
+wallet.income('Премия', 500)
+wallet.outcome('Уплата налогов', 500)
+wallet.outcome('Покупка продуктов', 1500)
+wallet.showOperations()
+console.log(wallet.balance)
 
-console.log('-----------------')
-
-// Замаскировать карту до последних четырех символов
-
-let card = '2337456783192467'
-
-function maskCard(cardNumber) {
-	let n = cardNumber.length
-	cardNumber = cardNumber.slice(-4, n)
-	cardNumber = cardNumber.padStart(n, '*')
-	return cardNumber
-}
-
-console.log(maskCard(card))
+console.log('------------------')
