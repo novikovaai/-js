@@ -1,79 +1,50 @@
-/* отсортировать по возрасту */
-
-const users = [
-	{ name: 'Вася', age: 30 },
-	{ name: 'Катя', age: 18 },
-	{ name: 'Аня', age: 40 },
-	{ name: 'Петя', age: 25 },
-];
-
-users.sort((a, b) => a.age - b.age)
-
-console.log(users)
-console.log('------------------')
-
-//Преобразовать к виду {fullName: 'Вася Пупкин', skillNum: 2}
-
-const users2 = [
-	{
-		name: 'Вася',
-		surname: 'Пупкин',
-		age: 30,
-		skills: ['Разработка', 'Dev0ps']
-	},
-	{
-		name: 'Катя',
-		surname: 'Белова',
-		age: 18,
-		skills: ['Дизайн']
-	},
-]
-
-usersNew = users2.map(element => {
-	return {
-		fullName: `${element.name} ${element.surname}`,
-		skillNum: element.skills.length
-	}
-})
-
-console.log(usersNew)
-
-console.log('------------------')
-
-/* Реализовать методы увеличения и уменьшения баланса,
-	при котором каждая операция сохраняется в массив
-	operations в виде { reason: 'Оплата налогов', sum: -100 }.
-	Возвращается true, если успешно и false, если не зватает баланса.
-	Также реализовать метод вывода числа операций по кошельку
+/*
+Сделать объект склад с методами добавления на склад, поиска по складу товара и расчет веса
 */
 
-const wallet = {
-	balance: 0,
-	operations: [],
-	income: function (reason, sum) {
-		this.operations.push({ reason, sum });
-		this.balance += sum;
-		return true;
+const warehouse = {
+	goods: [],
+	findGoodById: function (idToFind) {
+		return this.goods.find(element => element.id === idToFind)
 	},
-	outcome: function (reason, sum) {
-		if (this.balance < sum) {
-			console.log('Недостаточно средств')
-			return false
+	addGood: function (nameOfGood) {
+		const existedGood = findGoodById(nameOfGood.id)
+		if (existedGood){
+			console.log('Такой товар уже есть')
+			return
 		}
-		this.operations.push({ reason, sum });
-		this.balance -= sum;
-		return this.balance >= 0;
+		return this.goods.push(nameOfGood)
 	},
-	showOperations: function () {
-		console.log(this.operations.length)
+	getWeightKg: function () {
+		return this.goods.reduce((acc, element) => acc += element?.weight?.kg ? element.weight.kg : 0, 0)
 	},
 };
 
-wallet.income('Зарплата', 1000)
-wallet.income('Премия', 500)
-wallet.outcome('Уплата налогов', 500)
-wallet.outcome('Покупка продуктов', 1500)
-wallet.showOperations()
-console.log(wallet.balance)
+/* Товары */
+const car = {
+	id: 1,
+	weight: {
+		kg: 1000
+	},
+	brand: 'Ford'
+}
 
-console.log('------------------')
+const chair = {
+	id: 2,
+	weight: {
+		kg: 2
+	}
+}
+
+const paper = {
+	id: 3,
+	color: 'red'
+}
+
+warehouse.addGood(car)
+warehouse.addGood(chair)
+warehouse.addGood(paper)
+console.log(warehouse.goods)
+
+console.log(warehouse.findGoodById(2))
+console.log(warehouse.getWeightKg())
