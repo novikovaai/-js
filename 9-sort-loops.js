@@ -13,25 +13,25 @@ function sortArray(array, direction = 'ascending') {
 	let temp2;
 	switch (direction) {
 		case 'ascending': //сортировка по возрастанию
-			for (let _ = 0; _ < array.length; _++) { //количество проходов = длина массива
-				for (let [i, el] of array.entries()) {
-					if (array[i] > array[i + 1]) { //сравниваем соседние элементы
+			for (let i = 0; i < array.length; i++) { //количество проходов = длина массива
+				for (let [j, el] of array.entries()) {
+					if (array[j] > array[j + 1]) { //сравниваем соседние элементы
 						temp1 = el;
-						temp2 = array[i + 1];
-						array[i] = temp2;
-						array[i + 1] = temp1;
+						temp2 = array[j + 1];
+						array[j] = temp2;
+						array[j + 1] = temp1;
 					}
 				}
 			}
 			break;
 		case 'descending': //сортировка по убыванию
-			for (let _ = 0; _ < array.length; _++) { //количество проходов = длина массива
-				for (let [i, el] of array.entries()) {
-					if (array[i] < array[i + 1]) { //сравниваем соседние элементы
+			for (let i = 0; i < array.length; i++) { //количество проходов = длина массива
+				for (let [j, el] of array.entries()) {
+					if (array[j] < array[j + 1]) { //сравниваем соседние элементы
 						temp1 = el;
-						temp2 = array[i + 1];
-						array[i] = temp2;
-						array[i + 1] = temp1;
+						temp2 = array[j + 1];
+						array[j] = temp2;
+						array[j + 1] = temp1;
 					}
 				}
 			}
