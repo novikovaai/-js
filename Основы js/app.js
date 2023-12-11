@@ -1,50 +1,34 @@
+'use strict';
+
 /*
-Сделать объект склад с методами добавления на склад, поиска по складу товара и расчет веса
+	Дополнить объект методом для получения имени:
+	- компании
+	- сео
+	- сотрудника
 */
 
-const warehouse = {
-	goods: [],
-	findGoodById: function (idToFind) {
-		return this.goods.find(element => element.id === idToFind)
+const company = {
+	name: "ООО Агро",
+	employees: [
+		{
+			name: "Света",
+		},
+	],
+	ceo: {
+		name: "Вася",
+
 	},
-	addGood: function (nameOfGood) {
-		const existedGood = findGoodById(nameOfGood.id)
-		if (existedGood){
-			console.log('Такой товар уже есть')
-			return
-		}
-		return this.goods.push(nameOfGood)
+	getCompanyName() {
+		return this.name
 	},
-	getWeightKg: function () {
-		return this.goods.reduce((acc, element) => acc += element?.weight?.kg ? element.weight.kg : 0, 0)
+	getEmployeesName() {
+		return this.employees.map(element => element.name)
 	},
+	getCeoName() {
+		return this.ceo.name
+	}
 };
 
-/* Товары */
-const car = {
-	id: 1,
-	weight: {
-		kg: 1000
-	},
-	brand: 'Ford'
-}
-
-const chair = {
-	id: 2,
-	weight: {
-		kg: 2
-	}
-}
-
-const paper = {
-	id: 3,
-	color: 'red'
-}
-
-warehouse.addGood(car)
-warehouse.addGood(chair)
-warehouse.addGood(paper)
-console.log(warehouse.goods)
-
-console.log(warehouse.findGoodById(2))
-console.log(warehouse.getWeightKg())
+console.log(company.getCompanyName())
+console.log(company.getEmployeesName())
+console.log(company.getCeoName())
