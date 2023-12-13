@@ -44,5 +44,13 @@ function checkLeapYear(year) {
 	return Number(year) % 400 === 0 || Number(year) % 100 !== 0 && Number(year) % 4 === 0;
 }
 
+
+function filterDatesWithDate(array) {
+	return array
+		.filter(element => !isNaN(new Date(element).getTime()))
+		.map(element => element.split('/').join('-'))
+}
+
 console.log(filterDates(datesArr))
+console.log(filterDatesWithDate(datesArr))
 
