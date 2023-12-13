@@ -5,10 +5,15 @@ let newQueryPar = {
 
 function getStringForUrl(param) {
 	let urlEnd = '';
+
 	for (let key in param) {
-		urlEnd += `&${key}=${param[key]}`
+		if (urlEnd) {
+			urlEnd += `&${key}=${param[key]}`
+		} else {
+			urlEnd += `${key}=${param[key]}`
+		}
 	}
-	return urlEnd.slice(1)
+	return urlEnd
 }
 
 console.log(getStringForUrl(newQueryPar))
