@@ -7,36 +7,12 @@
 const datesArr = [`10-02-2022`, `тест`, `11/12/2023`, `00/13/2022`, `41/12/2023`, `k/pp/2023`, `11/02/202t`, `29-02-2001`, `29-02-2000`]
 
 function filterDates(array) {
-
-	// фильтрация массива
 	return array
-		.map(element => element.split('')) //делаем массив из каждого элемента
-		.filter(element => element.includes('-') || element.includes('/')) // убираем элементы без нужных символов
-		.map(element => { //приводим все оставшиеся элементы к одному виду
-			return element.includes('-')
-				? element.join('').split('-')
-				: element.join('').split('/');
-		})
-		.filter(element => element.length === 3 && Number(element[2])) // проверяем правильность длины даты и что год - это число
-		.filter(element => Number(element[1]) > 0 && Number(element[1]) < 13) // проверяем правильность месяца
-		.filter(element => { //проверяем правильность числа
-			switch (Number(element[1])) {
-				case 2: //февраль
-					return Number(element[0]) > 0
-						&& checkLeapYear(element[2]) //проверка на вискосный
-						? Number(element[0]) < 30
-						: Number(element[0]) < 29;
-				case 4: //апрель
-				case 6: //июнь
-				case 9: //сентябрь
-				case 11: //ноябрь
-					return Number(element[0]) > 0 && Number(element[0]) < 31;
-				default: //остальные месяцы
-					return Number(element[0]) > 0 && Number(element[0]) < 32;
-			}
-		})
-		.map(element => element.join('-')) //делаем каждый элемент правильной строкой
-
+		.filter(element => (element.includes('-') // убираем элементы без нужных символов
+			|| element.includes('/')) // убираем элементы без нужных символов
+			&& checkDate(element.slice(0, 2), element.slice(3, 5), element.slice(6)) // проверка правильности даты
+		)
+		.map(element => element.replaceAll('/', '-')); //приводим все оставшиеся элементы к одному виду
 }
 
 // проверка на високосный год
@@ -44,13 +20,27 @@ function checkLeapYear(year) {
 	return Number(year) % 400 === 0 || Number(year) % 100 !== 0 && Number(year) % 4 === 0;
 }
 
-
-function filterDatesWithDate(array) {
-	return array
-		.filter(element => !isNaN(new Date(element).getTime()))
-		.map(element => element.split('/').join('-'))
+function checkDate(day, month, year) {
+	day = Number(day);
+	month = Number(month);
+	year = Number(year);
+	if (isNaN(day) || isNaN(month) || isNaN(year)) {
+		return false
+	}
+	switch (month) {
+		case 2: //февраль
+			return day > 0
+				&& checkLeapYear(year) //проверка на вискосный
+				? day < 30
+				: day < 29;
+		case 4: //апрель
+		case 6: //июнь
+		case 9: //сентябрь
+		case 11: //ноябрь
+			return day > 0 && day < 31;
+		default: //остальные месяцы
+			return day > 0 && day < 32;
+	}
 }
 
 console.log(filterDates(datesArr))
-console.log(filterDatesWithDate(datesArr))
-
