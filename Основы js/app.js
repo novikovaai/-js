@@ -8,6 +8,10 @@ function submitForm() {
     document.querySelector('.panel').innerText = input;
     document.querySelector('.input').value = '';
     document.querySelector('.notification').classList.add('notification_active');
+
+    const textStr = JSON.stringify({text: input});
+    localStorage.setItem('text', textStr)
+
 };
 
 function changedInput(e) {
@@ -21,12 +25,17 @@ function changedInput(e) {
 // console.log(document.querySelector('div#two').innerText)
 // console.log(document.querySelector('div span[user-id="4"]').innerText)
 
-const newElement = document.createElement('div')
-const panelText = 'Панель'
-const panelClass = 'button'
-newElement.setAttribute('user-id', 1)
-newElement.classList.add('panel')
+// const newElement = document.createElement('div')
+// const panelText = 'Панель'
+// const panelClass = 'button'
+// newElement.setAttribute('user-id', 1)
+// newElement.classList.add('panel')
 // newElement.innerText = 'Кнопка'
-newElement.innerHTML = `<button class="${panelClass}">${panelText}</button>`
-document.querySelector('.test').appendChild(newElement)
+// newElement.innerHTML = `<button class="${panelClass}">${panelText}</button>`
+// document.querySelector('.test').appendChild(newElement)
+
+// localStorage.setItem('token', 'dsfjhasd;gjha;')
+
+// localStorage.key
+// localStorage.getItem
 
