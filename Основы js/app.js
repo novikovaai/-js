@@ -16,9 +16,17 @@ function changedInput(e) {
     }
 };
 
-console.log(document.querySelectorAll('div.one')[0].innerText)
-console.log(document.querySelectorAll('div.one')[1].innerText)
-console.log(document.querySelector('div#two').innerText)
-console.log(document.querySelector('div span[user-id="4"]').innerText)
+// console.log(document.querySelectorAll('div.one')[0].innerText)
+// console.log(document.querySelectorAll('div.one')[1].innerText)
+// console.log(document.querySelector('div#two').innerText)
+// console.log(document.querySelector('div span[user-id="4"]').innerText)
 
+const newElement = document.createElement('div')
+const panelText = 'Панель'
+const panelClass = 'button'
+newElement.setAttribute('user-id', 1)
+newElement.classList.add('panel')
+// newElement.innerText = 'Кнопка'
+newElement.innerHTML = `<button class="${panelClass}">${panelText}</button>`
+document.querySelector('.test').appendChild(newElement)
 
