@@ -43,4 +43,10 @@ function checkDate(day, month, year) {
 	}
 }
 
+function filterDatesWithDate(array) {
+	const validDates = array.filter((date) => !isNaN(new Date(`${date.slice(3, 5)}-${date.slice(0, 2)}-${date.slice(6)}`)));
+	return validDates.map(element => element.replaceAll('/', '-'))
+}
+
 console.log(filterDates(datesArr))
+console.log(filterDatesWithDate(datesArr))
