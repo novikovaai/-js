@@ -3,26 +3,71 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="./styles.css">
+	<title>Habbit App</title>
+	<link rel="stylesheet" href="./styles/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Fira+Sans:wght@400;700&family=Inter:wght@500;600;700;800&family=Open+Sans&family=Roboto&family=Rubik:wght@700&family=Source+Sans+3&display=swap"
+		rel="stylesheet">
 </head>
-<body style="background-color: #1c1b21; text-align: center;">
-	<img src="./logo.svg" alt="">
-	<div class="panel">I love this!</div>
-	<input class="input" onkeydown="changedInput(Event)" />
-	<button class="button" onclick="submitForm()">Change</button>
-	<div class="notification">Changed!</div>
-	<!-- <div class="one">
-		<span>Элемент 1</span>
-	</div>
-	<div class="one">
-		<span>Элемент 2</span>
-	</div>
-	<div id="two">Элемент 3</div>
-	<div>
-		<span user-id="4">Элемент 4</span>
-	</div> -->
-	<!-- <div class="test"></div> -->
-	<script src="./app.js"></script>
+<body>
+	<div class="app">		
+		<div class="panel">
+			<div class="logo">
+				<img src="./imgs/habbit-logo.svg" alt="Логотип Habbit App">
+				Habbit
+			</div>
+			<nav class="menu">
+				<div class="menu__list">
+					<button class="menu__item menu__item_active">
+						<img src="./imgs/Water.svg" alt="Вода">
+					</button>
+					<button class="menu__item">
+						<img src="./imgs/food.svg" alt="Еда">
+					</button>
+				</div>
+				<button class="menu__add">
+					<img src="./imgs/add.svg" alt="Добавить привычку">
+				</button>
+			</nav>
+		</div>
+		<div class="content">
+				<header>
+					<h1>Потребление воды</h1>
+					<div class="progress">
+						<div class="progress__text">
+							<div class="progress__name">Прогресс</div>
+							<div class="progress__percent">80%</div>
+						</div>
+						<div class="progress__bar">
+							<div class="progress__cover-bar"></div>
+						</div>
+					</div>
+				</header>
+				<main>
+					<div class="days">
+						<div class="habbit">
+							<div class="habbit__day">День 1</div>
+							<div class="habbit__comment">
+								Первый подход всегда даётся тяжело
+							</div>
+							<button class="habbit__delete">
+								<img src="./imgs/delete.svg" alt="Иконка удалить день">
+							</button>									
+						</div>
+						<div class="habbit">
+							<div class="habbit__day">День 2</div>
+							<form class="habbit__form">								
+								<input type="text" class="input-icon" name="input-day" placeholder="Комментарий">
+								<label for="input-day" class="input-icon__label"><img src="./imgs/comment-icon.svg" alt="Иконка комментария"></label>
+								<button class="button">Готово</button>
+							</form>							
+						</div>
+					</div>					
+				</main>
+		</div>
+	</div>	
+	<script src="scripts/app.js"></script>
 </body>
 </html>
