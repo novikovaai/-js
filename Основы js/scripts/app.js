@@ -2,6 +2,7 @@
 
 let habbits = [];
 const HABBIT_KEY = 'HABBIT_KEY'
+let globalActiveHabbitId;
 
 //page
 
@@ -39,15 +40,14 @@ function rerenderDays(activeHabbit) {
 	let count = 0;
 	for (const day of activeHabbit.days) {
 		count++;
-		console.log(count)
 		const element = document.createElement('div');
 		element.classList.add('habbit');
 		element.innerHTML = `<div class="habbit__day">День ${count}</div>
 							<div class="habbit__comment">
 								${day.comment}
 							</div>
-							<button class="habbit__delete">
-								<img src="./imgs/delete.svg" alt="Иконка удалить день ${count}">
+							<button class="habbit__delete" onclick="deleteDay(${count-1})">
+								<img src="./imgs/delete.svg" alt="Иконка удалить день ${count}" name="${count}">
 							</button>`			
 		page.main.days.appendChild(element)	
 	}
@@ -92,6 +92,7 @@ function rerenderMenu(activeHabbit) {
 }
 
 function rerender(activeHabbitId) {
+	globalActiveHabbitId = activeHabbitId;
 	const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
 	if (!activeHabbit) {
 		return;
@@ -99,6 +100,43 @@ function rerender(activeHabbitId) {
 	rerenderMenu(activeHabbit);
 	rerenderHeader(activeHabbit);
 	rerenderDays(activeHabbit);
+}
+
+// work with days
+
+function addDay(event) {
+	event.preventDefault();
+	const form = event.target;
+	const data = new FormData(form);
+	const comment = data.get('input-day');
+	form['input-day'].classList.remove('error')
+	if (!comment) {
+		form['input-day'].classList.add('error')
+		form['input-day'].addEventListener('click', () => form['input-day'].classList.remove('error'))
+	};
+	habbits = habbits.map(habbit => {
+		if (habbit.id === globalActiveHabbitId) {
+			return {
+				...habbit,
+				days: habbit.days.concat([{ comment }])
+			};		
+		}
+		return habbit;	
+	})
+	form['input-day'].value = '';
+	rerender(globalActiveHabbitId);
+	saveData();	
+}
+
+function deleteDay(toDelete) {	
+	habbits = habbits.map(habbit => {
+		if (habbit.id === globalActiveHabbitId) {
+			habbit.days.splice(toDelete, 1)	
+		}
+		return habbit;
+	})
+	rerender(globalActiveHabbitId);
+	saveData();
 }
 
 //init 
