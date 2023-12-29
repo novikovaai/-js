@@ -3,16 +3,56 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="">
-	<link rel="f" href="./">
-	fontface{}
-	<script src="./app.js"></script>
+	<title>Habbit App</title>
+	<link rel="stylesheet" href="./styles/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Fira+Sans:wght@400;700&family=Inter:wght@500;600;700;800&family=Open+Sans&family=Roboto&family=Rubik:wght@700&family=Source+Sans+3&display=swap"
+		rel="stylesheet">
 </head>
 <body>
-	<form action="ge">
-		<input type="te">
-	</form>
-	<img src="" alt="" >
+	<div class="app">		
+		<div class="panel">
+			<div class="logo">
+				<img src="./imgs/habbit-logo.svg" alt="Логотип Habbit App">
+				Habbit
+			</div>
+			<nav class="menu">
+				<div class="menu__list">
+				</div>
+				<button class="menu__add">
+					<img src="./imgs/add.svg" alt="Добавить привычку">
+				</button>
+			</nav>
+		</div>
+		<div class="content">
+				<header>
+					<h1 class="h1">Потребление воды</h1>
+					<div class="progress">
+						<div class="progress__text">
+							<div class="progress__name">Прогресс</div>
+							<div class="progress__percent"></div>
+						</div>
+						<div class="progress__bar">
+							<div class="progress__cover-bar"></div>
+						</div>
+					</div>
+				</header>
+				<main>
+					<div class="days">					</div>
+					<div class="habbit">
+						<div class="habbit__day">День _</div>
+						<form class="habbit__form" onsubmit="addDay(event)">								
+							<input type="text" class="input-icon" name="input-day" placeholder="Комментарий">
+							<label for="input-day" class="input-icon__label"><img src="./imgs/comment-icon.svg" alt="Иконка комментария"></label>
+							<button class="button" type="submit">Готово</button>
+							</form>							
+					</div>
+										
+				</main>
+		</div>
+	</div>	
+	<script src="scripts/app.js"></script>
 </body>
 </html>
