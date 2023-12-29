@@ -203,13 +203,15 @@ h1 {
 }
 
 input {
-	border-radius: 9px;
+	background: #FFFFFF;
 	border: 1px solid #E7EBFB;
-	font-family: Comfortaa;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 16px;	
+	border-radius: 9px;
+	padding: 12px 20px;
+	font-family: 'Comfortaa', cursive;
 	flex: 1;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
 }
 
 input::placeholder {
@@ -247,6 +249,113 @@ input.error {
 
 .button:hover {
 	background-color: #eae9f8;
+}
+
+.cover {
+	background-color: rgba(0, 0, 0, 0.25);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cover_hidden {
+	display: none;
+} 
+
+.new-habbit {
+	min-width: 424px;
+	max-width: 600px;
+	border-radius: 10px;
+	background: #FFF;
+	box-shadow: 0px 8px 14px 12px rgba(56, 56, 56, 0.05);
+	padding: 22px;
+	position: relative;
+}
+
+.close-window {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	cursor: pointer;
+	border: none;
+	background: none;
+	
+}
+
+.close-window:hover img{
+	filter: brightness(80%);
+}
+
+.new-habbit__h2 {
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 27px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.new-habbit__form {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.h3 {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: center;
+	color: #768396;
+	margin-bottom: 10px;
+}
+
+.new-habbit__icons {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.new-habbit__icon {
+	background-color: #FFFFFF;
+	box-shadow: 0px 8px 14px 0px rgba(62, 107, 224, 0.12);
+	border-radius: 14px;
+	width: 45px;
+	height: 45px;
+	border: none;
+	cursor: pointer;
+}
+
+.new-habbit__icon:hover {
+	background-color: #5051F9;
+}
+
+.new-habbit__icon:hover img {
+	filter: brightness(0) invert(1);
+}
+
+.new-habbit__icon_active {
+	background-color: #5051F9;
+}
+
+.new-habbit__icon_active img {
+	filter: brightness(0) invert(1);
+}
+
+.new-habbit__icon_active:hover {
+	background-color: #6A6AFB;
+}
+
+.new-habbit__add {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 17px;
 }
 
 
