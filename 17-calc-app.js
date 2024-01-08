@@ -5,19 +5,19 @@ function mathOperation(operationButton) {
 	const numTwo = Number(document.querySelector('.second_number').value);
 	if (!numOne || !numTwo) {
 		return;
-	}
+	}	
 	let operationResult;
 	switch (operationButton) {
-		case 'add':
+		case 'addition':
 			operationResult = `${numOne + numTwo}`;
 			break;
-		case 'sub':
+		case 'substraction':
 			operationResult = `${numOne - numTwo}`;
 			break;
-		case 'mul':
+		case 'multiply':
 			operationResult = `${numOne * numTwo}`;
 			break;
-		case 'div':
+		case 'division':
 			operationResult = `${numOne / numTwo}`;
 			break;
 	}
@@ -27,21 +27,8 @@ function mathOperation(operationButton) {
 	document.querySelector('.second_number').value = '';
 }
 
-function addition() {
-	mathOperation('add')
-};
-
-function substraction() {
-	mathOperation('sub')
-};
-
-function multiply() {
-	mathOperation('mul')
-};
-
-function division() {
-	mathOperation('div')
-};
+const buttons = document.querySelector('.button-container');
+buttons.addEventListener('click', (Event) => mathOperation(Event.target.id));
 
 function clearB() {
 	document.querySelector('.result-value').innerText = '';
