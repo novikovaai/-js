@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>	
+	<link rel="stylesheet" href="./17-calc-styles.css">
+</head>
+<body>
+	<main>
+		<div class="calc">
+			<div class="input-container">
+				<input type="text" name="number-1" class="input-number first_number" placeholder="Введите число">
+				<input type="text" name="number-2" class="input-number second_number" placeholder="Введите число">
+			</div>			
+			<div class="button-container"> 
+				<button class="button" id="addition">+</button>
+				<button class="button" id="substraction">-</button>
+				<button class="button" id="multiply">*</button>
+				<button class="button" id="division">/</button>
+			</div>
+			<div class="result-text">Результат:</div>
+			<div class="result-value"></div>
+			<button class="button button_clear" onclick="clearB()">Очистить</button>
+		</div>
+	</main>
+	<script src="./17-calc-app.js"></script>
+</body>
+</html>
